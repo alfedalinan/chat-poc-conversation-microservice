@@ -1,3 +1,2 @@
-export * from './user.entity'
-export * from './user-register.entity'
-export * from './user-contact.entity'
+export * from './conversation.entity'
+export * from './conversation-member.entity'

@@ -6,7 +6,7 @@ services:
   conversationdb:
     image: mariadb
     restart: always
-    container_name: chat-mysql
+    container_name: conversation-mysql
     environment:
       - MARIADB_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
       - MYSQL_USER=${DB_USER}
