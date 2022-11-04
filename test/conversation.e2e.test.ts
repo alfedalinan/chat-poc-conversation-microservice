@@ -5,7 +5,7 @@ import { AppModule } from '../src/app.module'
 import { SequelizeModule, getModelToken } from '@nestjs/sequelize'
 import { Conversation } from '../src/application/entities'
 
-describe('UserController', () => {
+describe('ConversationController', () => {
   let app: INestApplication
   let id: number
   let userId: number

@@ -1,9 +1,9 @@
 import { Module } from "@nestjs/common"
 import { ServiceModule } from "../services/service.module"
-import { UserController as ConversationController } from "./"
+import { ConversationController, MessageController } from "./"
 
 @Module({
-    controllers: [ConversationController], // <--- add every new controller here
+    controllers: [ConversationController, MessageController], // <--- add every new controller here
     imports: [ServiceModule]
 })
 export class ControllerModule {}

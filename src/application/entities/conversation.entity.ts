@@ -1,5 +1,6 @@
 import { Table, Column, Model, AutoIncrement, PrimaryKey, DataType, HasMany, AllowNull } from 'sequelize-typescript'
 import { ConversationMember } from './conversation-member.entity'
+import { Message } from './message.entity'
 
 @Table
 export class Conversation extends Model {
@@ -20,4 +21,7 @@ export class Conversation extends Model {
 
     @HasMany(() => ConversationMember)
     conversationMembers: ConversationMember[]
+
+    @HasMany(() => Message)
+    messages: Message[]
 }

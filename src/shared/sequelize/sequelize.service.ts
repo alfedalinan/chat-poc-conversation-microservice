@@ -18,7 +18,7 @@ export class SequelizeConfigService implements SequelizeOptionsFactory {
             models: [
                 `${__dirname}/../**/*.entity.{ts,js}`
             ],
-            logging: false,
+            logging: true,
             autoLoadModels: true,
             synchronize: true
         }

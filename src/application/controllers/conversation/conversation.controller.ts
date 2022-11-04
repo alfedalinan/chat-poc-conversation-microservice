@@ -4,7 +4,7 @@ import { ConversationService } from '../../services'
 import { ConversationDto } from '../../dtos'
 
 @Controller('conversations')
-export class UserController {
+export class ConversationController {
     constructor(private readonly conversationService: ConversationService) { }
     
     @Post()
