@@ -23,13 +23,34 @@ describe('MessageController', () => {
                            .then(() => {
                             return messageModel.truncate({ cascade: true })
                            })
-                           .then(() => {
-                            return messageModel.sequelize.query('SET FOREIGN_KEY_CHECKS = 1;')
-                           })
+
     await app.init()
   })
 
-  afterAll(done => done())
+  afterAll(done => {
+    messageModel.sequelize.query('SET FOREIGN_KEY_CHECKS = 1;')
+    done()
+  })
+  
+  it('/messages (POST)', () => {
+    let data = {
+      conversationId: 1,
+      uuid: '12345-abcde-xyxyxy',
+      fromMemberId: 1,
+      toMemberId: 2,
+      text: 'Hi! This is my first message E2E!',
+      status: 0
+    }
+
+    return request(app.getHttpServer())
+      .post('/messages')
+      .send(data)
+      .then(response => {
+        expect(response.body).toBeTruthy()
+        expect(response.statusCode).toBe(200)
+        expect(response.body.id).toBeTruthy()
+      })
+  })
 
   it('/messages/unread/to-member-id/{:toMemberId} (GET)', () => {
     let toMemberId = 1
@@ -39,6 +60,18 @@ describe('MessageController', () => {
         expect(response.body).toBeTruthy()
         expect(response.statusCode).toBe(200)
         expect(response.body.length).toBeGreaterThanOrEqual(0)
+      })
+  })
+
+  it('/messages/set-to-delivered/{:uuid} (PATCH)', () => {
+    let uuid = '12345-abcde-xyxyxy'
+    return request(app.getHttpServer())
+      .patch(`/messages/set-to-delivered/${uuid}`)
+      .then(response => {
+
+        expect(response.statusCode).toBe(200)
+        expect(response.body.length).toBeTruthy()
+        expect(response.body.length).toBeGreaterThan(0)
       })
   })
 })
